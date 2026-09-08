@@ -25,7 +25,7 @@ function selectUse(use: string) {
         <view class="hero-points"><text>专业拍摄</text><text>自然精修</text><text>多尺寸可选</text><text>电子版和冲印版</text></view>
         <button @click="go('booking?packageId=p0')">快速预约</button>
       </view>
-      <FilmImage src="/static/images/id-photo/id-photo-neutral.svg" alt="证件照样片中性占位图" ratio="portrait" />
+      <FilmImage src="/static/images/id-photo/id-photo-sample.jpg" alt="学生证件照样片" ratio="portrait" />
     </view>
 
     <view class="section-head">
@@ -33,7 +33,7 @@ function selectUse(use: string) {
     </view>
     <view class="use-grid">
       <view v-for="use in uses" :key="use" class="use-chip" :class="{ active: query === use }" @click="selectUse(use)">
-        <view class="use-icon">{{ use.slice(0, 1) }}</view>
+        
         <text>{{ use }}</text>
       </view>
     </view>

@@ -4,6 +4,7 @@ import { ref, reactive, watch } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { api } from '../../services/api';
 import { useData } from '../../composables/useData';
+import storeConfig from '../../config/store';
 const { data: packages } = useData(() => api('/packages'));
 const form = reactive({
   packageId: 'p0',
@@ -53,13 +54,13 @@ async function submit() {
       ><view class="card"
         ><view>{{ success.packageName }}</view
         ><view>订单编号 {{ success.id }}</view
-        ><view class="muted">到店付款 · 取件码 {{ success.pickupCode }}</view></view
+        ><view class="muted">到店付款 · {{ storeConfig.address }}</view><view class="muted">照片制作完成后生成取件码。</view></view
       ><button @click="platform.switchTab({ url: '/pages/orders/index' })">
         查看我的订单
       </button></template
     ><template v-else
       ><view class="title">为自己，留一个时间。</view
-      ><view class="subtitle">到店付款 · 提前 2 小时可取消未付款预约</view
+      ><view class="subtitle">{{ storeConfig.address }} · 到店付款 · 提前 2 小时可取消未付款预约</view
       ><view class="card"
         ><picker
           :range="packages"

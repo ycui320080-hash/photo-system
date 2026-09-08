@@ -18,7 +18,7 @@ page {
   --muted: #756f65;
   --shadow: 0 8px 24px rgba(67, 54, 41, 0.08);
   --radius: 18px;
-  --page-width: 960px;
+  --page-width: 430px;
   background: $cream;
   color: $ink;
   font-family: 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
@@ -202,10 +202,6 @@ textarea { min-height: 96px; }
 }
 
 .is-selected .select-check { background: $brick; border-color: $brick; color: #fff; }
-
-@media (min-width: 760px) {
-  .page { padding-right: 34px; padding-left: 34px; }
-}
 
 @media (max-width: 430px) {
   .page { padding-right: 16px; padding-left: 16px; }

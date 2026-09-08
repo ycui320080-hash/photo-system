@@ -16,8 +16,8 @@ const rows = computed(() =>
   <view class="page package-page">
     <view class="package-hero">
       <FilmImage
-        src="/static/images/graduation/graduation-neutral.svg"
-        alt="毕业季横幅中性占位图"
+        src="/static/images/camp/campus-hero.jpg"
+        alt="毕业季校园写真"
         ratio="wide"
       />
       <view class="hero-copy">
@@ -47,8 +47,8 @@ const rows = computed(() =>
       <view v-for="item in rows" :key="item.id" class="package-row">
         <FilmImage
           class="package-photo"
-          src="/static/images/packages/package-neutral.svg"
-          :alt="item.name + '中性占位图'"
+          src="/static/images/camp/campus-hero.jpg"
+          :alt="item.name + ''"
           ratio="square"
         />
         <view class="package-info">
@@ -74,7 +74,7 @@ const rows = computed(() =>
 <style scoped lang="scss">
 .package-hero { position: relative; overflow: hidden; background: #25231f; border-radius: 22px; }
 .package-hero :deep(.film-image) { border: 0; opacity: .76; }
-.package-hero::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(37,35,31,.9), rgba(37,35,31,.2)); content: ''; }
+.package-hero::after { position: absolute; inset: 0; background: rgba(37,35,31,.58); content: ''; }
 .hero-copy { position: absolute; z-index: 2; top: 50%; left: 34px; color: #fff; transform: translateY(-50%); }
 .hero-copy .eyebrow { color: #edc75f; }
 .hero-copy .title { margin-bottom: 5px; font-size: 38px; }

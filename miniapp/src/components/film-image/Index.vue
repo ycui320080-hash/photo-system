@@ -6,14 +6,14 @@ withDefaults(
     ratio?: 'wide' | 'portrait' | 'square';
     label?: string;
   }>(),
-  { ratio: 'wide', label: '待替换校园实拍' },
+  { ratio: 'wide', label: '' },
 );
 </script>
 
 <template>
   <view class="film-image" :class="'ratio-' + ratio">
     <image :src="src" :alt="alt" mode="aspectFill" />
-    <text class="replace-label">{{ label }}</text>
+    <text v-if="label" class="replace-label">{{ label }}</text>
   </view>
 </template>
 
