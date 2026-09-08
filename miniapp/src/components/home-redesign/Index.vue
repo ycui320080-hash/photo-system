@@ -219,14 +219,15 @@ function showLocation() {
   max-width: 430px;
   margin: 0 auto;
   padding: 0 16px calc(env(safe-area-inset-bottom) + 112px);
+  box-sizing: border-box;
 }
 section {
   width: 100%;
   box-sizing: border-box;
 }
 .film-hero {
-  min-height: 380px;
-  padding: 25px 18px 20px;
+  min-height: 370px;
+  padding: 21px 18px 17px;
   overflow: hidden;
   background: #f1e8d8;
   border: 1px solid #e2d6c6;
@@ -246,8 +247,8 @@ section {
 }
 .film-collage {
   display: grid;
-  height: 205px;
-  margin-top: 13px;
+  height: 190px;
+  margin-top: 11px;
   padding: 4px 2px;
   grid-template-columns: 1.25fr 0.85fr;
   grid-template-rows: 1fr 1fr;
@@ -287,7 +288,7 @@ section {
 }
 .hero-actions {
   display: grid;
-  margin-top: 15px;
+  margin-top: 12px;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
@@ -575,6 +576,12 @@ section {
   border-color: rgba(255, 255, 255, 0.72);
   color: #fff;
   background: transparent;
+}
+.home-screen :deep(.tabbar) {
+  width: 100%;
+  max-width: 430px;
+  margin-right: auto;
+  margin-left: auto;
 }
 @media (max-width: 374px) {
   .home-main {
