@@ -20,28 +20,28 @@ const primaryServices = [
 const quickServices = [
   {
     title: '证件照',
-    note: '标准拍摄 · 自然精修',
+    note: '标准拍摄 · 精修',
     icon: '/static/icons/line/portrait.svg',
     tone: 'sage',
     page: 'photo-specs',
   },
   {
     title: '在线冲印',
-    note: '照片上传 · 到店取件',
+    note: '照片上传 · 取件',
     icon: '/static/icons/line/print.svg',
     tone: 'brick',
     page: 'printing',
   },
   {
     title: '毕业写真',
-    note: '校园取景 · 青春留影',
+    note: '校园取景 · 留影',
     icon: '/static/icons/line/graduation.svg',
     tone: 'yellow',
     page: 'packages',
   },
   {
     title: '校园跟拍',
-    note: '自然抓拍 · 全部底片',
+    note: '自然抓拍 · 底片',
     icon: '/static/icons/line/camera.svg',
     tone: 'cream',
     page: 'booking?packageId=p13',
@@ -279,7 +279,7 @@ section {
 .hero-polaroid {
   position: absolute;
   right: 15px;
-  bottom: -17px;
+  bottom: 10px;
   width: 78px;
   height: 99px;
   padding: 5px 5px 13px;
@@ -293,7 +293,7 @@ section {
   height: 100%;
 }
 .hero-copy {
-  padding: 15px 112px 13px 18px;
+  padding: 15px 18px 13px;
 }
 .hero-copy h1 {
   margin: 0;
@@ -434,6 +434,9 @@ section {
   align-items: flex-end;
   justify-content: space-between;
   gap: 12px;
+}
+.section-heading > view {
+  min-width: 0;
 }
 .section-heading h2 {
   margin: 0;
@@ -633,7 +636,7 @@ section {
     padding-left: 13px;
   }
   .hero-copy {
-    padding-right: 98px;
+    padding-right: 15px;
     padding-left: 15px;
   }
   .hero-copy h1 {
