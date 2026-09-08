@@ -7,46 +7,52 @@ import storeConfig from '../../config/store';
     <image class="brand-mark" src="/static/images/brand/logo-mark.png" mode="aspectFit" />
     <view class="brand-copy">
       <text class="brand-name">{{ storeConfig.name }}</text>
-      <text class="brand-context">安徽工程大学校内</text>
+      <text class="brand-context">安徽工程大学校内摄影服务</text>
     </view>
   </view>
 </template>
 
 <style scoped>
 .brand-header {
+  display: flex;
   width: 100%;
   max-width: 430px;
-  min-height: 74px;
+  height: calc(68px + env(safe-area-inset-top));
   margin: 0 auto;
-  padding: calc(env(safe-area-inset-top) + 12px) 112px 10px 16px;
-  display: flex;
+  padding: env(safe-area-inset-top) 112px 0 16px;
+  box-sizing: border-box;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   background: #f7f3ea;
 }
 .brand-mark {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   flex: 0 0 auto;
 }
 .brand-copy {
-  min-width: 0;
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: 2px;
 }
-.brand-name {
+.brand-name,
+.brand-context {
+  display: block;
   overflow: hidden;
-  color: #25231f;
-  font-family: 'STKaiti', 'KaiTi', 'Songti SC', serif;
-  font-size: 21px;
-  font-weight: 800;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.brand-name {
+  color: #25231f;
+  font-family: 'STKaiti', 'KaiTi', 'Songti SC', serif;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.2;
+}
 .brand-context {
   color: #778872;
-  font-size: 11px;
-  white-space: nowrap;
+  font-size: 10px;
+  line-height: 1.35;
 }
 </style>
