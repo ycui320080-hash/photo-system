@@ -1,6 +1,6 @@
 # miniapp 图片素材审计
 
-审计范围：miniapp/src/static/images。未删除任何用户 Logo 或原始图片。
+审计范围：miniapp/src/static/images，共 25 个图片文件。未删除任何用户 Logo 或原始图片。
 
 | 文件名 | 尺寸 | 文件大小 | 实际用途 | 被哪些页面/组件引用 | 重复使用 | 卡通占位图 |
 |---|---:|---:|---|---|---|---|
@@ -10,6 +10,9 @@
 | camp/campus-hero.jpg | 1200×800 | 287.9 KB | 首页校园主视觉 | miniapp/src/components/home-redesign/Index.vue<br>miniapp/src/pages/packages/index.vue | 是 | 否 |
 | campus/campus-neutral.svg | 1200×760 | 0.8 KB | 早期校园卡通占位图（首页未引用） | 未引用 | 否 | 是 |
 | graduation/graduation-neutral.svg | 1200×760 | 0.7 KB | 早期毕业卡通占位图（首页未引用） | 未引用 | 否 | 是 |
+| home/campus-follow-secondary.jpg | 1200×800 | 136.4 KB | 一帧作品校园跟拍 | miniapp/src/components/home-redesign/Index.vue | 否 | 否 |
+| home/dorm-group-secondary.jpg | 1200×800 | 121.8 KB | 一帧作品宿舍合照 | miniapp/src/components/home-redesign/Index.vue | 否 | 否 |
+| home/graduation-group-secondary.jpg | 1200×800 | 128.0 KB | 一帧作品毕业合影 | miniapp/src/components/home-redesign/Index.vue | 否 | 否 |
 | home/campus-follow-shoot.jpg | 1200×900 | 193.5 KB | 校园跟拍套餐 | miniapp/src/components/home-redesign/Index.vue | 否 | 否 |
 | home/campus-tree-shade.jpg | 1200×900 | 277.1 KB | 主视觉树荫照片 | miniapp/src/components/home-redesign/Index.vue | 否 | 否 |
 | home/class-group.jpg | 1200×675 | 180.8 KB | 班级集体照套餐 | miniapp/src/components/home-redesign/Index.vue | 否 | 否 |
