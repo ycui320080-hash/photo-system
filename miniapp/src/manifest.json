@@ -1,0 +1,17 @@
+{
+  "name": "校园照相馆",
+  "appid": "",
+  "versionName": "0.1.0",
+  "versionCode": "100",
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": false
+    }
+  },
+  "h5": {
+    "router": {
+      "mode": "hash"
+    }
+  }
+}

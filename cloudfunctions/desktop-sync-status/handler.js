@@ -1,0 +1,1 @@
+const {wrap,order,writeOrder,log}=require('./runtime');exports.main=wrap(async({event,openid,staff,db})=>{return {mode:'cloudbase',database:'CloudBase',cloudConnected:true,lastChecked:new Date().toISOString()};},'staff');

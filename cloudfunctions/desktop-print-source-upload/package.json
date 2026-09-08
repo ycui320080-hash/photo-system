@@ -1,0 +1,10 @@
+{
+  "name": "desktop-print-source-upload",
+  "version": "0.1.0",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^3.0.1",
+    "@cloudbase/node-sdk": "3.18.3",
+    "sharp": "^0.35.4"
+  }
+}

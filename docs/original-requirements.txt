@@ -1,0 +1,745 @@
+你现在是一名资深全栈开发工程师，请直接在我的 Windows 电脑上创建并开发一个“校园照相馆微信服务系统”。不要只告诉我步骤，要实际创建文件夹、编写代码、安装依赖、运行检查并修复错误。
+
+一、项目目录
+
+请在 D 盘新建项目根目录：
+
+D:\CampusPhotoStudio
+
+如果目录已经存在，先检查里面的文件，不要直接删除或覆盖已有内容。
+
+项目采用 monorepo 结构：
+
+D:\CampusPhotoStudio
+├─ miniapp             微信小程序顾客端
+├─ desktop-admin       店内电脑管理端
+├─ cloudfunctions      微信云开发云函数
+├─ shared              公共类型、常量、校验规则
+├─ docs                需求、数据库和部署文档
+├─ README.md
+└─ .gitignore
+
+所有业务模块必须拆分。禁止把全部页面、接口、数据库操作和工具函数写在同一个文件中。
+
+“一个功能一个文件”的具体要求：
+
+1. 每个页面使用独立文件或独立目录。
+2. 每个业务模块使用独立 service 文件。
+3. 每个云函数使用独立目录。
+4. 数据类型、常量、校验规则和工具函数分别存放。
+5. UI组件拆分为独立组件。
+6. 单个业务文件尽量不超过300行。
+7. 禁止出现一个几千行的 App.vue、index.vue 或 service.js。
+8. 公共逻辑必须复用，不能在多个页面复制粘贴。
+
+二、系统定位
+
+系统主要服务校内大学生和校园照相馆，重点解决以下问题：
+
+1. 学生预约证件照和写真时需要反复微信沟通。
+2. 学生不清楚考试报名照的尺寸、背景色和文件要求。
+3. 冲印照片需要到店传文件，效率较低。
+4. 店员容易遗漏预约、修图、打印和取件任务。
+5. 顾客经常询问订单是否完成。
+6. 写真和毕业照选片容易出现照片编号混乱。
+7. 高清照片不应长期全部保存在云端。
+
+三、技术方案
+
+1. 微信小程序端：
+
+   * Uni-app
+   * Vue 3
+   * TypeScript
+   * Pinia
+   * 使用微信小程序作为主要编译目标
+
+2. 店内电脑管理端：
+
+   * Electron
+   * Vue 3
+   * TypeScript
+   * Vite
+   * Pinia
+   * Element Plus
+   * 使用 SQLite 保存必要的本地配置、同步状态和本地文件索引
+   * 原始高清照片保存在店内电脑，不存入数据库
+
+3. 云端：
+
+   * 微信云开发 CloudBase
+   * 云数据库
+   * 云存储
+   * 云函数
+   * 开发阶段提供 mock 数据模式，没有微信 AppID 和云环境ID时也能运行和预览
+
+4. 工程要求：
+
+   * 使用 npm
+   * 配置 ESLint 和 Prettier
+   * 提供 .env.example
+   * 不得在代码中写入真实密钥、AppID或密码
+   * 前后端共享 TypeScript 类型
+   * 所有金额统一使用“分”存储，界面显示时转换成“元”
+   * 所有时间统一保存标准时间，界面按中国时区显示
+   * 使用中文界面和中文注释，但变量、函数和文件名使用规范英文
+
+四、小程序端功能
+
+请按独立模块开发以下功能。
+
+1. 首页模块
+
+文件目录建议：
+
+miniapp/src/pages/home/
+miniapp/src/services/home.service.ts
+
+功能：
+
+* 门店轮播图
+* 热门套餐
+* 校园优惠活动
+* 快速预约
+* 在线冲印入口
+* 订单查询入口
+* 门店地址、营业时间和联系电话
+* 页面风格年轻、明亮、简洁，不要做成传统后台界面
+
+2. 套餐模块
+
+文件目录建议：
+
+miniapp/src/pages/packages/
+miniapp/src/services/package.service.ts
+
+套餐类型：
+
+* 一寸证件照
+* 二寸证件照
+* 简历形象照
+* 教资报名照
+* 四六级报名照
+* 计算机等级考试报名照
+* 考研报名照
+* 公务员考试照片
+* 毕业写真
+* 学士服写真
+* 宿舍合照
+* 情侣或闺蜜写真
+* 班级集体照
+* 校园活动跟拍
+* 普通照片冲印
+
+套餐字段：
+
+* 套餐名称
+* 套餐分类
+* 展示图片
+* 原价
+* 优惠价
+* 套餐介绍
+* 包含的精修张数
+* 拍摄时长
+* 是否需要预约
+* 是否启用
+* 排序值
+
+3. 证件照规格模块
+
+文件目录建议：
+
+miniapp/src/pages/photo-specs/
+miniapp/src/services/photo-spec.service.ts
+shared/constants/photo-specs.ts
+
+每个规格包含：
+
+* 使用场景
+* 宽度像素
+* 高度像素
+* 背景颜色
+* 文件格式
+* 文件大小范围
+* 注意事项
+* 对应推荐套餐
+
+用户可以按照“考试或用途”查询，不要只让用户按照一寸、二寸查询。
+
+第一版内置演示数据，但在界面明确标注“具体要求请以当次官方报名通知为准”，不要把演示规格冒充永久有效标准。
+
+4. 预约模块
+
+文件目录建议：
+
+miniapp/src/pages/booking/
+miniapp/src/services/booking.service.ts
+shared/validators/booking.validator.ts
+
+功能：
+
+* 选择套餐
+* 选择日期
+* 选择时间段
+* 显示剩余预约名额
+* 填写姓名、手机号、人数和备注
+* 防止重复提交
+* 提交成功后生成订单编号
+* 展示预约成功页面
+* 允许在规定时间前取消预约
+* 暂时不接微信支付，只记录“到店付款”或“已收定金”
+
+5. 在线冲印模块
+
+文件目录建议：
+
+miniapp/src/pages/printing/
+miniapp/src/services/printing.service.ts
+shared/validators/upload.validator.ts
+
+功能：
+
+* 上传照片
+* 选择照片尺寸
+* 选择打印数量
+* 选择相纸类型
+* 选择是否塑封
+* 选择取件时间
+* 自动计算预计金额
+* 上传前提示不要上传身份证、银行卡、医疗资料等敏感图片
+* 限制图片格式、大小和数量
+* 上传失败可以重试
+* 文件设置自动过期字段，便于后续清理
+
+6. 我的订单模块
+
+文件目录建议：
+
+miniapp/src/pages/orders/
+miniapp/src/services/order.service.ts
+shared/constants/order-status.ts
+
+订单状态：
+
+* 待确认
+* 待到店
+* 已拍摄
+* 待上传预览图
+* 待选片
+* 修图中
+* 待顾客确认
+* 待打印
+* 待取件
+* 已完成
+* 已取消
+
+功能：
+
+* 订单列表
+* 按状态筛选
+* 订单详情
+* 查看费用
+* 查看预约时间
+* 查看处理进度
+* 显示四位数取件码
+* 联系门店
+* 取消符合条件的订单
+
+7. 在线选片模块
+
+文件目录建议：
+
+miniapp/src/pages/photo-selection/
+miniapp/src/services/photo-selection.service.ts
+miniapp/src/components/photo-grid/
+miniapp/src/components/photo-preview/
+
+功能：
+
+* 查看带水印的压缩预览图
+* 显示照片编号
+* 收藏照片
+* 选择精修照片
+* 显示套餐包含数量
+* 显示已经选择的数量
+* 对单张照片填写修图要求
+* 提交前二次确认
+* 提交后默认锁定，店员可以重新开放
+* 不允许小程序直接下载无水印预览图
+
+8. 成片交付模块
+
+文件目录建议：
+
+miniapp/src/pages/delivery/
+miniapp/src/services/delivery.service.ts
+
+功能：
+
+* 查看成片缩略图
+* 提交一次修改意见
+* 确认成片
+* 下载最终成片
+* 显示文件到期时间
+* 到期前提示及时保存
+* 过期文件不再允许下载
+
+9. 个人中心模块
+
+文件目录建议：
+
+miniapp/src/pages/profile/
+miniapp/src/services/profile.service.ts
+
+功能：
+
+* 微信用户信息
+* 手机号绑定状态
+* 我的预约
+* 我的订单
+* 我的电子照片
+* 常用联系人
+* 门店导航
+* 联系门店
+* 隐私政策
+* 用户协议
+* 注销账号申请
+
+五、店内电脑管理端功能
+
+1. 登录模块
+
+目录建议：
+
+desktop-admin/src/modules/auth/
+desktop-admin/src/services/auth.service.ts
+
+要求：
+
+* 管理员账号登录
+* 密码不得明文存储
+* 登录状态管理
+* 退出登录
+* 开发模式提供演示账号
+* 第一版支持店主和店员两种角色
+
+2. 工作台
+
+目录建议：
+
+desktop-admin/src/modules/dashboard/
+desktop-admin/src/services/dashboard.service.ts
+
+显示：
+
+* 今日预约
+* 待确认订单
+* 待修图订单
+* 待打印订单
+* 待取件订单
+* 临近交付订单
+* 未收尾款订单
+* 本月订单数
+* 本月营业额
+* 最近订单列表
+
+3. 预约日历
+
+目录建议：
+
+desktop-admin/src/modules/calendar/
+desktop-admin/src/services/calendar.service.ts
+
+功能：
+
+* 日视图、周视图和月视图
+* 查看各时间段预约
+* 设置每天营业时间
+* 设置不可预约日期
+* 调整预约时间
+* 设置每个时间段最大预约人数
+
+4. 订单管理
+
+目录建议：
+
+desktop-admin/src/modules/orders/
+desktop-admin/src/services/order.service.ts
+desktop-admin/src/components/order-status-tag/
+
+功能：
+
+* 创建线下订单
+* 查询订单
+* 按状态筛选
+* 按姓名、手机号、订单号和取件码搜索
+* 修改订单状态
+* 登记定金和尾款
+* 添加内部备注
+* 查看状态变更记录
+* 导出订单列表
+* 不允许直接删除已产生交易记录的订单，只能取消或归档
+
+5. 套餐管理
+
+目录建议：
+
+desktop-admin/src/modules/packages/
+desktop-admin/src/services/package.service.ts
+
+功能：
+
+* 新增套餐
+* 编辑套餐
+* 上架或下架
+* 修改价格
+* 设置套餐图片
+* 设置精修数量
+* 调整展示顺序
+
+6. 照片导入与处理
+
+目录建议：
+
+desktop-admin/src/modules/photo-import/
+desktop-admin/src/services/photo-import.service.ts
+desktop-admin/src/services/image-process.service.ts
+desktop-admin/src/services/local-file.service.ts
+
+功能：
+
+* 从本地批量选择照片
+* 保留原图本地路径
+* 生成压缩预览图
+* 生成缩略图
+* 添加照相馆名称水印
+* 自动生成照片编号
+* 将预览图上传到云存储
+* 记录本地文件与云端预览图的对应关系
+* 上传失败可重试
+* 不要将图片二进制数据直接写入SQLite
+* 不要未经确认移动或删除用户原始照片
+
+7. 选片管理
+
+目录建议：
+
+desktop-admin/src/modules/photo-selection/
+desktop-admin/src/services/photo-selection.service.ts
+
+功能：
+
+* 查看顾客选择结果
+* 查看每张照片的修图要求
+* 导出选片清单
+* 标记修图进度
+* 重新开放顾客选片
+* 显示套餐包含数量和超出数量
+
+8. 打印任务
+
+目录建议：
+
+desktop-admin/src/modules/printing/
+desktop-admin/src/services/printing.service.ts
+
+功能：
+
+* 查看待打印订单
+* 显示图片、尺寸和数量
+* 标记打印中
+* 标记打印完成
+* 生成取件码
+* 标记已取件
+* 第一版不直接控制打印机，只管理打印任务
+
+9. 成片交付
+
+目录建议：
+
+desktop-admin/src/modules/delivery/
+desktop-admin/src/services/delivery.service.ts
+
+功能：
+
+* 选择本地精修照片
+* 上传最终成片
+* 设置下载到期时间
+* 查看顾客确认状态
+* 查看修改意见
+* 完成订单
+* 到期文件清理前要求二次确认或执行安全的自动规则
+
+10. 顾客管理
+
+目录建议：
+
+desktop-admin/src/modules/customers/
+desktop-admin/src/services/customer.service.ts
+
+功能：
+
+* 顾客列表
+* 历史订单
+* 累计消费
+* 最近到店时间
+* 备注
+* 数据导出
+* 手机号脱敏显示
+* 店员角色不应看到不必要的完整隐私信息
+
+11. 数据统计
+
+目录建议：
+
+desktop-admin/src/modules/statistics/
+desktop-admin/src/services/statistics.service.ts
+
+功能：
+
+* 日、周、月订单数量
+* 日、周、月营业额
+* 热门套餐排行
+* 待收款金额
+* 订单状态分布
+* 只使用真实数据库数据
+* 没有数据时显示空状态，不生成虚假经营数据
+
+12. 系统设置
+
+目录建议：
+
+desktop-admin/src/modules/settings/
+desktop-admin/src/services/settings.service.ts
+
+功能：
+
+* 门店名称
+* 门店地址
+* 联系电话
+* 营业时间
+* 水印文字
+* 默认文件保存目录
+* 预览图清晰度
+* 云端文件保存天数
+* 数据备份
+* 数据恢复
+* 云环境配置
+* 同步状态检查
+
+六、云函数划分
+
+每个云函数使用独立目录，不要合并成一个巨大云函数。
+
+cloudfunctions/
+├─ auth-login/
+├─ booking-create/
+├─ booking-cancel/
+├─ booking-timeslots/
+├─ order-list/
+├─ order-detail/
+├─ order-update-status/
+├─ package-list/
+├─ print-order-create/
+├─ photo-preview-upload/
+├─ photo-selection-submit/
+├─ photo-selection-reopen/
+├─ delivery-create/
+├─ delivery-confirm/
+├─ customer-profile/
+├─ statistics-summary/
+└─ expired-files-cleanup/
+
+要求：
+
+* 每个云函数校验用户身份和权限
+* 不能相信前端直接传入的金额、用户ID和管理员角色
+* 数据库写操作必须在云函数中进行关键校验
+* 记录关键操作日志
+* 删除云端照片时进行权限和订单状态检查
+* 提供统一的成功及错误响应结构
+
+七、数据库设计
+
+至少设计以下集合或数据表：
+
+* users
+* staff
+* store_settings
+* packages
+* photo_specs
+* booking_slots
+* orders
+* order_items
+* payments
+* photos
+* photo_selections
+* retouch_requests
+* print_tasks
+* delivery_files
+* operation_logs
+
+每张表需要包含：
+
+* 主键
+* 创建时间
+* 更新时间
+* 必要的状态字段
+* 必要的关联ID
+
+订单需要保存状态变更记录。不要通过直接覆盖状态导致历史记录丢失。
+
+请在 docs/database-design.md 中写清楚：
+
+* 数据表结构
+* 字段名称
+* 字段类型
+* 是否必填
+* 字段说明
+* 表之间的关系
+* 主要索引
+* 隐私字段
+* 数据保留和删除规则
+
+八、界面设计要求
+
+整体风格面向大学生群体：
+
+* 明亮、干净、年轻、有摄影氛围
+* 主色使用温暖奶油白搭配深灰，可使用少量橙色或胶片红点缀
+* 避免过度科技蓝
+* 避免廉价渐变和复杂发光效果
+* 小程序首页突出证件照、冲印、毕业季和订单查询
+* 页面留白合理
+* 按钮和文字适合手机触控
+* 后台突出效率和信息层级
+* 所有页面提供加载、空数据、错误和成功状态
+* 不使用来源不明的受版权保护图片
+* 演示图片使用本地占位图或明确可替换素材
+
+九、安全与隐私要求
+
+照片和手机号属于敏感数据，必须做到：
+
+* 手机号脱敏
+* 管理员权限校验
+* 上传文件类型和大小校验
+* 云端文件设置有效期
+* 禁止把密钥写入Git
+* 操作日志记录
+* 数据导出需要管理员权限
+* 禁止使用任意用户输入拼接本地文件路径
+* 防止路径穿越
+* 不允许自动删除本地原图
+* 删除和覆盖文件前必须确认具体目标
+* README中说明数据备份方案
+* 小程序提供隐私政策入口
+* 开发演示数据不得包含真实学生姓名、手机号和照片
+
+十、开发执行顺序
+
+请按以下阶段执行，每完成一个阶段都运行检查并修复问题。
+
+第一阶段：环境与项目骨架
+
+* 检查 Node.js、npm 和Git版本
+* 创建 D:\CampusPhotoStudio
+* 创建monorepo目录
+* 初始化Git
+* 创建.gitignore
+* 初始化miniapp、desktop-admin、shared和cloudfunctions
+* 安装依赖
+* 创建README
+* 确保两个客户端至少能启动并显示基础首页
+
+第二阶段：共享模型与Mock模式
+
+* 创建公共类型
+* 创建订单状态常量
+* 创建表单校验
+* 创建Mock数据
+* 创建数据访问接口
+* 保证以后可以从Mock切换到CloudBase，而不用重写页面
+
+第三阶段：小程序核心功能
+
+依次实现：
+
+* 首页
+* 套餐
+* 证件照规格
+* 预约
+* 我的订单
+* 在线冲印
+* 在线选片
+* 成片交付
+* 个人中心
+
+第四阶段：电脑管理端核心功能
+
+依次实现：
+
+* 登录
+* 工作台
+* 预约日历
+* 订单管理
+* 套餐管理
+* 照片导入
+* 选片管理
+* 打印任务
+* 成片交付
+* 顾客管理
+* 数据统计
+* 系统设置
+
+第五阶段：云开发接入
+
+* 创建云函数
+* 创建数据库初始化说明
+* 创建权限设计
+* 创建云存储目录规范
+* 创建同步机制
+* 没有AppID和环境ID时保持Mock模式可运行
+
+第六阶段：测试与文档
+
+* 运行TypeScript检查
+* 运行ESLint
+* 运行构建
+* 修复所有阻断运行的错误
+* 编写启动说明
+* 编写微信开发者工具导入说明
+* 编写CloudBase配置说明
+* 编写管理员演示账号说明
+* 编写数据备份和恢复说明
+* 编写后续正式上线清单
+
+十一、验收标准
+
+完成后必须满足：
+
+1. 项目真实创建在 D:\CampusPhotoStudio。
+2. 小程序和电脑管理端都能在Mock模式运行。
+3. 不配置微信AppID也能查看演示界面。
+4. 用户可以完成一次模拟预约。
+5. 管理员可以在电脑端看到模拟订单。
+6. 可以模拟上传预览图和选择照片。
+7. 可以模拟修改订单状态。
+8. 可以查看真实由Mock订单计算出的统计结果。
+9. 每个主要功能都有独立文件或目录。
+10. 不存在把所有功能写进一个文件的情况。
+11. README包含准确的安装和启动命令。
+12. 所有构建和检查结果必须如实汇报。
+13. 不要声称没有实际执行过的测试已经通过。
+14. 不要自行编造微信AppID、云环境ID或商户号。
+
+十二、执行要求
+
+* 现在直接开始执行，不要只输出项目方案。
+* 遇到普通代码问题自行检查并修复。
+* 如果需要微信AppID、CloudBase环境ID或商户资料，先使用Mock模式继续开发，不要因此停止整个项目。
+* 不要删除D盘其他任何文件。
+* 不要修改D:\CampusPhotoStudio以外的用户文件。
+* 如果D盘不存在或没有权限，再明确告诉我具体问题。
+* 每完成一个阶段，简短汇报已完成内容、文件路径、启动方式和当前遗留问题。
+* 开始前先列出不超过8项的执行计划，然后立即创建项目。

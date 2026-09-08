@@ -1,0 +1,1 @@
+const {wrap,order,writeOrder}=require('./runtime');exports.main=wrap(async({event,openid,db})=>db.runTransaction(async tx=>{const o=await order(tx,event.id,openid,null);const p=o.photos.find(p=>p.id===event.photoId);if(!p)throw Error('照片不属于订单');p.favorite=!!event.favorite;return writeOrder(tx,o,openid,'photo-favorite')}));

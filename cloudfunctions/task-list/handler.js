@@ -1,0 +1,1 @@
+const {wrap,order,writeOrder,log}=require('./runtime');exports.main=wrap(async({event,openid,staff,db})=>{return {retouch:(await db.collection('retouch_requests').limit(100).get()).data,printing:(await db.collection('print_tasks').limit(100).get()).data};},'staff');

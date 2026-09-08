@@ -1,0 +1,48 @@
+{
+  "name": "campus-photo-studio",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "miniapp",
+    "desktop-admin",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm:dev:api\" \"npm:dev:admin\" \"npm:dev:mini\"",
+    "dev:api": "tsx server/index.ts",
+    "dev:admin": "npm run dev -w desktop-admin",
+    "dev:mini": "npm run dev -w miniapp",
+    "build": "npm run build -w desktop-admin && npm run build -w miniapp",
+    "build:mp": "npm run build:mp -w miniapp",
+    "check": "vue-tsc --noEmit",
+    "lint": "eslint .",
+    "test": "tsx --test tests/*.test.ts",
+    "prepare:cloud": "node scripts/prepare-cloud.cjs",
+    "seed:cloud": "tsx scripts/cloud-seed.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "pinia": "^3.0.0",
+    "sharp": "^0.35.4",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@cloudbase/node-sdk": "^3.18.3",
+    "@types/cors": "^2.8.0",
+    "@types/express": "^5.0.0",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.0.0",
+    "concurrently": "^9.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-vue": "^10.0.0",
+    "prettier": "^3.0.0",
+    "sass": "^1.104.0",
+    "sass-embedded": "^1.104.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.0.0",
+    "vue-tsc": "^3.0.0"
+  }
+}

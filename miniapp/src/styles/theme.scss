@@ -1,0 +1,213 @@
+$cream: #f7f3ea;
+$ink: #25231f;
+$brick: #b64032;
+$sage: #778872;
+$yellow: #d9a62e;
+$paper: #fffcf6;
+$border: #e8dfd1;
+
+:root,
+page {
+  --cream: #{$cream};
+  --ink: #{$ink};
+  --brick: #{$brick};
+  --sage: #{$sage};
+  --yellow: #{$yellow};
+  --paper: #{$paper};
+  --border: #{$border};
+  --muted: #756f65;
+  --shadow: 0 8px 24px rgba(67, 54, 41, 0.08);
+  --radius: 18px;
+  --page-width: 960px;
+  background: $cream;
+  color: $ink;
+  font-family: 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  font-size: 15px;
+}
+
+view,
+text,
+button,
+input,
+textarea { box-sizing: border-box; }
+
+.page {
+  width: 100%;
+  max-width: var(--page-width);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + 22px) 22px calc(env(safe-area-inset-bottom) + 104px);
+}
+
+.page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  color: $brick;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 6px 0 8px;
+  font-family: 'STSong', 'Songti SC', serif;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 30px 0 15px;
+}
+
+.section-title {
+  font-family: 'STSong', 'Songti SC', serif;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.section-note,
+.muted {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.card {
+  margin-bottom: 16px;
+  padding: 20px;
+  overflow: hidden;
+  background: $paper;
+  border: 1px solid $border;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.price {
+  color: $brick;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.price small { font-size: 12px; font-weight: 500; }
+
+button,
+.button {
+  display: flex;
+  min-height: 44px;
+  margin: 12px 0 0;
+  padding: 0 20px;
+  align-items: center;
+  justify-content: center;
+  background: $brick;
+  border: 0;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 44px;
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+button::after { border: 0; }
+button:active,
+.button:active { opacity: 0.84; transform: scale(0.985); }
+button[disabled] { opacity: 0.45; }
+.secondary { background: #f3e8df; color: $brick; }
+.ghost-button { background: transparent; border: 1px solid $border; color: $ink; }
+
+input,
+textarea,
+picker {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  margin: 10px 0;
+  padding: 13px 14px;
+  background: #f5f0e7;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: $ink;
+}
+
+textarea { min-height: 96px; }
+.error { margin: 12px 0; color: $brick; }
+
+.mock-note {
+  display: inline-flex;
+  margin-top: 14px;
+  padding: 7px 10px;
+  background: #f2e8dc;
+  border: 1px solid #e8d5c4;
+  border-radius: 999px;
+  color: #7a5847;
+  font-size: 11px;
+}
+
+.select-chip {
+  position: relative;
+  min-height: 64px;
+  padding: 13px 34px 13px 14px;
+  background: $paper;
+  border: 1px solid $border;
+  border-radius: 14px;
+}
+
+.select-chip.is-selected { background: #fbefec; border: 2px solid $brick; }
+
+.select-check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #b9b0a4;
+  border-radius: 50%;
+  color: transparent;
+  font-size: 12px;
+  line-height: 17px;
+  text-align: center;
+}
+
+.is-selected .select-check { background: $brick; border-color: $brick; color: #fff; }
+
+@media (min-width: 760px) {
+  .page { padding-right: 34px; padding-left: 34px; }
+}
+
+@media (max-width: 430px) {
+  .page { padding-right: 16px; padding-left: 16px; }
+  .title { font-size: 28px; }
+}

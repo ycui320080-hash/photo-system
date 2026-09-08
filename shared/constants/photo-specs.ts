@@ -1,0 +1,20 @@
+export const photoSpecs = [
+  '教资报名',
+  '四六级报名',
+  '计算机等级考试',
+  '考研报名',
+  '公务员考试',
+  '简历',
+  '一寸',
+  '二寸',
+].map((name, i) => ({
+  id: String(i),
+  name,
+  width: 295,
+  height: 413,
+  background: '白色（演示）',
+  format: 'JPG',
+  size: '20–200KB（演示）',
+  note: '具体要求请以当次官方报名通知为准',
+  packageId: 'p' + Math.min(i + 3, 7),
+}));

@@ -1,0 +1,18 @@
+{
+  "pages": [
+    { "path": "pages/home/index", "style": { "navigationBarTitleText": "安工程校园照相馆" } },
+    { "path": "pages/printing/index", "style": { "navigationBarTitleText": "在线冲印" } },
+    { "path": "pages/packages/index", "style": { "navigationBarTitleText": "毕业写真" } },
+    { "path": "pages/photo-specs/index", "style": { "navigationBarTitleText": "学生证件照" } },
+    { "path": "pages/booking/index", "style": { "navigationBarTitleText": "预约拍摄" } },
+    { "path": "pages/orders/index", "style": { "navigationBarTitleText": "我的订单" } },
+    { "path": "pages/photo-selection/index", "style": { "navigationBarTitleText": "在线选片" } },
+    { "path": "pages/delivery/index", "style": { "navigationBarTitleText": "成片交付" } },
+    { "path": "pages/profile/index", "style": { "navigationBarTitleText": "个人中心" } }
+   ],
+  "globalStyle": {
+    "navigationBarBackgroundColor": "#F7F3EA",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F7F3EA"
+  }
+}

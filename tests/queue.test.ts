@@ -1,0 +1,28 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdtempSync, mkdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+mkdirSync('.data', { recursive: true });
+process.env.STUDIO_INDEX_DIR = mkdtempSync(resolve('.data', 'queue-test-'));
+const index = require('../desktop-admin/electron/local-index.cjs');
+test('SQLite上传队列持久化、幂等入队与中断恢复', async () => {
+  await index.init();
+  const id = index.enqueue('order-test', 'D:\演示目录\photo.jpg', 'preview');
+  assert.equal(index.enqueue('order-test', 'D:\演示目录\photo.jpg', 'preview'), id);
+  assert.equal(index.jobs().length, 1);
+  index.update(id, 'uploading');
+  assert.equal(index.jobs()[0].attempts, 1);
+  await index.init();
+  assert.equal(index.jobs()[0].status, 'failed');
+  index.update(id, 'failed', '模拟网络错误');
+  assert.ok(index.jobs()[0].next_retry > Date.now());
+  index.update(id, 'synced');
+  await index.init();
+  assert.equal(index.jobs()[0].status, 'synced');
+  index.setting('defaultDirectory', "D:/用户选择的目录/含'引号");
+  assert.equal(index.setting('defaultDirectory'), "D:/用户选择的目录/含'引号");
+  index.add('order-test', 'D:/example.jpg', 'preview-test');
+  index.add('order-test', 'D:/example.jpg', 'preview-test');
+});
