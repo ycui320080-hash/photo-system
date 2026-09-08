@@ -112,6 +112,30 @@ export const homeImageAssets: ImageAsset[] = [
     temporary: true,
     replacement: '门店真实照片墙或纸质成品照片',
   },
+  {
+    id: 'dorm-group-secondary',
+    path: '/static/images/home/dorm-group-secondary.jpg',
+    purpose: '一帧作品宿舍合照',
+    alt: '宿舍同学在宿舍公共区域自然合照',
+    temporary: true,
+    replacement: '店主授权的另一组宿舍合照',
+  },
+  {
+    id: 'graduation-group-secondary',
+    path: '/static/images/home/graduation-group-secondary.jpg',
+    purpose: '一帧作品毕业合影',
+    alt: '毕业生在校园草坪自然合影',
+    temporary: true,
+    replacement: '店主授权的另一组毕业合影',
+  },
+  {
+    id: 'campus-follow-secondary',
+    path: '/static/images/home/campus-follow-secondary.jpg',
+    purpose: '一帧作品校园跟拍',
+    alt: '摄影师在林荫路跟拍学生',
+    temporary: true,
+    replacement: '店主授权的另一组校园跟拍现场照',
+  },
 ];
 
 export const getHomeAsset = (id: string) => homeImageAssets.find((asset) => asset.id === id);

@@ -81,10 +81,10 @@ const graduation = [
 
 const works = [
   { asset: 'campus-tree-shade', alt: '校园道路', className: 'tall' },
-  { asset: 'dorm-group', alt: '宿舍合照', className: 'regular' },
-  { asset: 'class-group', alt: '毕业班级合影', className: 'wide' },
-  { asset: 'campus-follow-shoot', alt: '校园跟拍', className: 'tall' },
-  { asset: 'id-photo-female-secondary', alt: '学生证件照', className: 'portrait' },
+  { asset: 'dorm-group-secondary', alt: '宿舍合照', className: 'regular' },
+  { asset: 'graduation-group-secondary', alt: '毕业合影', className: 'wide' },
+  { asset: 'campus-follow-secondary', alt: '校园跟拍', className: 'tall' },
+  { asset: 'id-photo-female', alt: '学生证件照', className: 'portrait' },
   { asset: 'printing-scene', alt: '照片冲印', className: 'regular' },
   { asset: 'photographer-at-work', alt: '摄影师拍摄现场', className: 'regular' },
   { asset: 'photo-wall', alt: '照片墙与纸质照片', className: 'wide' },
@@ -118,7 +118,7 @@ function showLocation() {
             mode="aspectFill"
           />
           <view class="hero-polaroid">
-            <image :src="image('photo-wall')" alt="纸质照片墙" mode="aspectFill" />
+            <image :src="image('graduation-female')" alt="纸质照片墙" mode="aspectFill" />
           </view>
         </view>
         <view class="hero-copy">
