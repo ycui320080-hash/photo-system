@@ -55,7 +55,7 @@ async function submit() {
         ><view>{{ success.packageName }}</view
         ><view>订单编号 {{ success.id }}</view
         ><view class="muted">到店付款 · {{ storeConfig.address }}</view><view class="muted">照片制作完成后生成取件码。</view></view
-      ><button @click="platform.switchTab({ url: '/pages/orders/index' })">
+      ><button @click="platform.reLaunch({ url: '/pages/orders/index' })">
         查看我的订单
       </button></template
     ><template v-else
