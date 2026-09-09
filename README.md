@@ -1,6 +1,6 @@
 # 校园照相馆微信服务系统
 
-项目位置：D:\夏洁校内照相馆系统。Windows 本地可运行的 Mock 版本，包含 Uni-app 顾客端、Electron/Vue 管理端、SQLite 本地服务以及独立 CloudBase 云函数。当前未配置微信 AppID / 云环境，不连接真实微信账号、不收款。可双击 start.cmd 启动三项本地服务；服务启动后可双击 start-desktop.cmd 打开桌面窗口。完整原始需求见 docs/original-requirements.txt；已验证范围与剩余工作见 docs/verification.md。
+Windows 本地可运行的 Mock 版本，包含 Uni-app 顾客端、Electron/Vue 管理端、SQLite 本地服务以及独立 CloudBase 云函数。当前未配置微信 AppID / 云环境，不连接真实微信账号、不收款。可双击 start.cmd 启动三项本地服务；服务启动后可双击 start-desktop.cmd 打开桌面窗口。完整原始需求见 docs/original-requirements.txt；已验证范围与剩余工作见 docs/verification.md。
 
 ## 快速启动
 
