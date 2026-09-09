@@ -66,7 +66,7 @@ async function cancel(id: string) {
     </view>
 
     <view v-if="!busy && !rows.length" class="empty-card">
-      <image src="/static/images/brand/logo-mark.svg" mode="aspectFit" />
+      <image src="/static/images/brand/logo-glyph.png" mode="aspectFit" />
       <view class="section-title">这里还没有订单</view>
       <view class="muted">预约一组校园照片，留下属于你的大学时光。</view>
       <button @click="go('packages')">查看拍摄套餐</button>

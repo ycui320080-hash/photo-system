@@ -35,7 +35,7 @@ function handleEntry(action: string) {
 <template>
   <view class="page profile-page">
     <view class="profile-card">
-      <image class="profile-logo" src="/static/images/brand/logo-mark.svg" mode="aspectFit" />
+      <image class="profile-logo" src="/static/images/brand/logo-glyph.png" mode="aspectFit" />
       <view><view class="title">你好，校园同学</view><view class="subtitle">把今天留在照片里。</view></view>
     </view>
 

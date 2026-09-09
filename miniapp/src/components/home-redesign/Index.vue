@@ -223,7 +223,7 @@ function showLocation() {
 
       <section class="store-info">
         <view class="store-heading">
-          <image src="/static/images/brand/logo-mark.svg" mode="aspectFit" />
+          <image src="/static/images/brand/logo-glyph-white.png" mode="aspectFit" />
           <view>
             <h2>{{ storeConfig.name }}</h2>
             <p>安徽工程大学校内摄影服务</p>
@@ -593,10 +593,8 @@ section {
 }
 .store-heading > image {
   width: 46px;
-  height: 46px;
+  height: 40px;
   flex: 0 0 auto;
-  background: #fff;
-  border-radius: 50%;
 }
 .store-heading h2 {
   margin: 0;

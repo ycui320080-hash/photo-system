@@ -4,7 +4,7 @@ import storeConfig from '../../config/store';
 
 <template>
   <view class="brand-header">
-    <image class="brand-mark" src="/static/images/brand/logo-mark.svg" mode="aspectFit" />
+    <image class="brand-mark" src="/static/images/brand/logo-glyph.png" mode="aspectFit" />
     <view class="brand-copy">
       <text class="brand-name">{{ storeConfig.name }}</text>
       <text class="brand-context">安徽工程大学校内摄影服务</text>
@@ -26,7 +26,7 @@ import storeConfig from '../../config/store';
   background: #f7f3ea;
 }
 .brand-mark {
-  width: 40px;
+  width: 46px;
   height: 40px;
   flex: 0 0 auto;
 }
