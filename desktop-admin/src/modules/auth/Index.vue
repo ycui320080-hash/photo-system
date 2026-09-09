@@ -59,7 +59,7 @@ async function submit() {
     <section class="login-panel">
       <div class="login-box">
         <div class="test-badge">测试环境</div>
-        <div class="login-brand"><span class="brand-lens"><i /></span><div>安工程校园照相馆<small>电脑管理端</small></div></div>
+        <div class="login-brand"><img class="brand-logo" src="../../assets/images/logo-glyph.png" alt="商标" /><div>安工程校园照相馆<small>电脑管理端</small></div></div>
         <h2>欢迎回来</h2>
         <p class="sub">登录后进入今日工作台</p>
         <el-alert v-if="mockMode" type="warning" :closable="false" show-icon>

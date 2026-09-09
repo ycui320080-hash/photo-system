@@ -42,7 +42,7 @@ async function logout() {
   <div v-else-if="auth.role" class="shell">
     <aside class="sidebar">
       <div class="brand">
-        <span class="brand-lens"><i /></span>
+        <img class="brand-logo" src="./assets/images/logo-glyph.png" alt="商标" />
         <div>安工程校园照相馆<small>CAMPUS PHOTO STUDIO</small></div>
       </div>
       <div class="environment-label">{{ modeLabel }}</div>

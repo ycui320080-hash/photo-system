@@ -6,4 +6,6 @@ contextBridge.exposeInMainWorld('studio', {
   retryPhotos: (input) => ipcRenderer.invoke('retry-photos', input),
   syncStatus: () => ipcRenderer.invoke('sync-status'),
   chooseDirectory: () => ipcRenderer.invoke('choose-directory'),
+  listPrinters: () => ipcRenderer.invoke('list-printers'),
+  printPhotos: (input) => ipcRenderer.invoke('print-photos', input),
 });

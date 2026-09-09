@@ -9,10 +9,11 @@ const date = ref(new Date()),
   edit = ref<any>(null),
   selectedDay = ref<string | null>(null);
 const { data, error, reload } = useData(() => api('/orders'), []);
+const active = computed(() => data.value.filter((o: any) => o.status !== '已取消'));
 const dayKey = (d: Date | string | number) => new Date(d).toLocaleDateString('sv-SE');
 const countByDay = computed(() => {
   const map: Record<string, number> = {};
-  for (const o of data.value) {
+  for (const o of active.value) {
     const t = Date.parse(o.appointment);
     if (Number.isNaN(t)) continue;
     const key = dayKey(t);
@@ -22,7 +23,7 @@ const countByDay = computed(() => {
 });
 const rows = computed(() =>
   selectedDay.value
-    ? data.value.filter((o: any) => dayKey(o.appointment) === selectedDay.value)
+    ? active.value.filter((o: any) => dayKey(o.appointment) === selectedDay.value)
     : [],
 );
 watch(date, (d) => (selectedDay.value = dayKey(d)));
