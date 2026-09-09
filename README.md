@@ -7,7 +7,7 @@ Windows 本地可运行的 Mock 版本，包含 Uni-app 顾客端、Electron/Vue
 环境：Node.js 24.14.0、npm 11.9.0、Git 2.54.0。PowerShell 中使用 npm.cmd，避免系统执行策略阻止 npm.ps1。无需更改执行策略。
 
 ```powershell
-cd D:\夏洁校内照相馆系统
+
 npm.cmd install
 npm.cmd run dev
 ```
