@@ -35,7 +35,7 @@ function handleEntry(action: string) {
 <template>
   <view class="page profile-page">
     <view class="profile-card">
-      <image class="profile-logo" src="/static/images/brand/logo-mark.png" mode="aspectFit" />
+      <image class="profile-logo" src="/static/images/brand/logo-mark.svg" mode="aspectFit" />
       <view><view class="title">你好，校园同学</view><view class="subtitle">把今天留在照片里。</view></view>
     </view>
 
@@ -65,7 +65,7 @@ function handleEntry(action: string) {
 <style scoped lang="scss">
 .profile-page { padding-top: calc(env(safe-area-inset-top) + 30rpx); }
 .profile-card { display: flex; padding: 34rpx; align-items: center; gap: 24rpx; background: #efe4d4; border-radius: 24rpx; }
-.profile-logo { width: 110rpx; height: 110rpx; background: #fff; border-radius: 50%; }
+.profile-logo { width: 96rpx; height: 96rpx; flex: 0 0 auto; }
 .entry-list { margin-top: 24rpx; overflow: hidden; background: #fffcf6; border: 1rpx solid #e8dfd1; border-radius: 24rpx; }
 .entry-row { display: flex; min-height: 112rpx; padding: 22rpx 28rpx; align-items: center; justify-content: space-between; border-bottom: 1rpx solid #eee7dc; }
 .entry-row:last-child { border-bottom: 0; }

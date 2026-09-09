@@ -4,7 +4,7 @@ import storeConfig from '../../config/store';
 
 <template>
   <view class="brand-header">
-    <image class="brand-mark" src="/static/images/brand/logo-mark.png" mode="aspectFit" />
+    <image class="brand-mark" src="/static/images/brand/logo-mark.svg" mode="aspectFit" />
     <view class="brand-copy">
       <text class="brand-name">{{ storeConfig.name }}</text>
       <text class="brand-context">安徽工程大学校内摄影服务</text>
@@ -22,19 +22,19 @@ import storeConfig from '../../config/store';
   padding: env(safe-area-inset-top) 112px 0 16px;
   box-sizing: border-box;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
   background: #f7f3ea;
 }
 .brand-mark {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   flex: 0 0 auto;
 }
 .brand-copy {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 .brand-name,
 .brand-context {
@@ -45,14 +45,15 @@ import storeConfig from '../../config/store';
 }
 .brand-name {
   color: #25231f;
-  font-family: 'STKaiti', 'KaiTi', 'Songti SC', serif;
-  font-size: 19px;
-  font-weight: 800;
+  font-family: 'STSong', 'Songti SC', 'SimSun', serif;
+  font-size: 20px;
+  font-weight: 700;
   line-height: 1.2;
 }
 .brand-context {
-  color: #778872;
+  color: #9a9284;
   font-size: 10px;
+  letter-spacing: 0.5px;
   line-height: 1.35;
 }
 </style>

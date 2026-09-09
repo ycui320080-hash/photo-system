@@ -223,7 +223,7 @@ function showLocation() {
 
       <section class="store-info">
         <view class="store-heading">
-          <image src="/static/images/brand/logo-mark.png" mode="aspectFit" />
+          <image src="/static/images/brand/logo-mark.svg" mode="aspectFit" />
           <view>
             <h2>{{ storeConfig.name }}</h2>
             <p>安徽工程大学校内摄影服务</p>

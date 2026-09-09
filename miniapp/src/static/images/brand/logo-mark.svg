@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- 外圆环 -->
+  <circle cx="100" cy="92" r="72" stroke="#1f1c19" stroke-width="6.5"/>
+  <!-- 底部弧形飘带 -->
+  <path d="M53 153 Q100 141 147 157 Q126 176 100 172 Q74 168 53 153 Z" fill="#1f1c19"/>
+  <!-- 左侧高相框 -->
+  <path d="M75 150 V74 H105 V87" stroke="#1f1c19" stroke-width="7.5" stroke-linecap="square" stroke-linejoin="miter"/>
+  <!-- 右侧矮相框 -->
+  <path d="M129 150 V87 H105 V100" stroke="#1f1c19" stroke-width="7.5" stroke-linecap="square" stroke-linejoin="miter"/>
+  <!-- 山峦剪影 -->
+  <path d="M83 144 L95 111 L104 129 L112 118 L125 144 Z" fill="#1f1c19"/>
+  <!-- 圆点（镜头/太阳） -->
+  <circle cx="117" cy="60" r="9" fill="#1f1c19"/>
+</svg>
